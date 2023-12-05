@@ -89,31 +89,18 @@ lspconfig["pylsp"].setup({
 })
 
 -- configure c/c++ server
---lspconfig["ccls"].setup({
---cmd = { "/usr/local/Cellar/ccls/0.20220729_9/bin/ccls" },
---init_options = {
---index = {
---threads = 0,
---},
---clang = {
---resourceDir = "/Users/user/.platformio/packages/toolchain-xtensa-esp32s3/xtensa-esp32s3-elf",
---excludeArgs = { "-frounding-math" },
---},
---},
---filetypes = { "c", "cpp" },
---on_attach = on_attach,
---capabilities = capabilities,
---lsp = {
---enabled = true,
---codelens = {
---enabled = true,
---events = { "BufEnter", "BufWritePost" },
---},
---},
---})
 lspconfig["clangd"].setup({
+	cmd = {
+		"clangd",
+		"--header-insertion=never",
+		"--background-index",
+		"--clang-tidy",
+		"--limit-references=0",
+		"--limit-results=0",
+		"--log=error",
+		"--query-driver=/Applications/ArmGNUToolchain/13.2.Rel1/arm-none-eabi/bin/*gcc*",
+	},
 	filetypes = { "c", "cpp", "arduino" },
-	cmd = { "/Users/user/Documents/GitHub/llvm-project/build/bin/clangd" },
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
@@ -136,41 +123,41 @@ lspconfig["jdtls"].setup({
 
 -- configure html server
 lspconfig["html"].setup({
-	capabilities = capabilities,
 	on_attach = on_attach,
+	capabilities = capabilities,
 })
 
 -- configure typescript server with plugin
 typescript.setup({
 	server = {
-		capabilities = capabilities,
 		on_attach = on_attach,
+		capabilities = capabilities,
 	},
 })
 
 -- configure css server
 lspconfig["cssls"].setup({
-	capabilities = capabilities,
 	on_attach = on_attach,
+	capabilities = capabilities,
 })
 
 -- configure tailwindcss server
 lspconfig["tailwindcss"].setup({
-	capabilities = capabilities,
 	on_attach = on_attach,
+	capabilities = capabilities,
 })
 
 -- configure emmet language server
 lspconfig["emmet_ls"].setup({
-	capabilities = capabilities,
 	on_attach = on_attach,
+	capabilities = capabilities,
 	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
 })
 
 -- configure lua server (with special settings)
 lspconfig["lua_ls"].setup({
-	capabilities = capabilities,
 	on_attach = on_attach,
+	capabilities = capabilities,
 	settings = { -- custom settings for lua
 		Lua = {
 			-- make the language server recognize "vim" global
