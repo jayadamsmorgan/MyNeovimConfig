@@ -50,7 +50,11 @@ keymap.set(
 	"<leader>mc",
 	":! (cd Makefile && make -j9 clean && cd CM4 && make -j9 clean && cd ../CM7 && make -j9 clean)<CR>"
 )
-keymap.set("n", "<leader>mcd", ":wa<CR>:! (cd Makefile && compiledb -o ../compile_commands.json make -j9 all)<CR>")
+keymap.set(
+	"n",
+	"<leader>mcd",
+	":wa<CR>:! (cd Makefile && compiledb -o ../compile_commands.json make -j9 all)<CR>:LspRestart<CR>"
+)
 
 ----------------------
 -- Plugin Keybinds
