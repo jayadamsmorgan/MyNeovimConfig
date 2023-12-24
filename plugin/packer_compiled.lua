@@ -267,6 +267,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/user/.local/share/nvim/site/pack/packer/start/windline.nvim",
     url = "https://github.com/windwp/windline.nvim"
+  },
+  xbase = {
+    loaded = true,
+    path = "/Users/user/.local/share/nvim/site/pack/packer/start/xbase",
+    url = "https://github.com/xbase-lab/xbase"
   }
 }
 
