@@ -91,7 +91,7 @@ lspconfig["clangd"].setup({
 		"--limit-references=0",
 		"--limit-results=0",
 		"--log=error",
-		"--query-driver=/Applications/ArmGNUToolchain/13.2.Rel1/arm-none-eabi/bin/*gcc*",
+		"--query-driver=/home/herman/.toolchains/arm-gnu-eabi-13.2/bin/*gcc*",
 	},
 	filetypes = { "c", "cpp", "arduino" },
 	on_attach = on_attach,
