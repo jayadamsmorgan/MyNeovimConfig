@@ -43,7 +43,7 @@ require("xbase").setup( -- NOTE: Defaults
 		sourcekit = {
 			filetypes = { "swift", "objc", "objcpp", "cuda", "proto" },
 			cmd = {
-				"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
+				"sourcekit-lsp",
 			},
 			root_dir = require("lspconfig").util.root_pattern(".git", "Package.swift", "project.yml", "Project.swift"),
 			on_attach = on_attach,
