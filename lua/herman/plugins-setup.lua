@@ -28,6 +28,18 @@ end
 
 -- add list of plugins to install
 return packer.startup(function(use)
+	-- xcode integration
+	use({
+		"xbase-lab/xbase",
+		run = "make install", -- or "make install && make free_space" (not recommended, longer build time)
+		requires = {
+			"neovim/nvim-lspconfig",
+			-- "nvim-telescope/telescope.nvim", -- optional
+			-- "nvim-lua/plenary.nvim", -- optional/requirement of telescope.nvim
+			-- "stevearc/dressing.nvim", -- optional (in case you don't use telescope but something else)
+		},
+	})
+
 	-- Markdown Preview plugin
 	use({
 		"iamcco/markdown-preview.nvim",
