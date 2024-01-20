@@ -9,6 +9,22 @@ local keymap = vim.keymap -- for conciseness
 
 keymap.set("n", "<leader>wq", ":wqa<CR>")
 
+keymap.set("n", "<leader>ff", ":%s/")
+
+keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+keymap.set("n", ">", '"_>>')
+keymap.set("n", "<", '"_<<')
+
+keymap.set("v", ">", '"_>gv')
+keymap.set("v", "<", '"_<gv')
+
+keymap.set("v", "p", '"_dP')
+
+keymap.set("n", "<leader>d", '"_d')
+keymap.set("v", "<leader>d", '"_d')
+
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>")
 
@@ -30,8 +46,6 @@ keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close current tab
 keymap.set("n", "<leader>tn", ":tabn<CR>") --  go to next tab
 keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
 keymap.set("n", "<leader>tX", ":tabonly<CR>") --  close other tabs
-
-keymap.set("n", "<leader>m", "<C-w><C-w>") -- move focus to another window
 
 -- toggle wrap
 keymap.set("n", "<leader>we", ":set wrap!<CR>")
