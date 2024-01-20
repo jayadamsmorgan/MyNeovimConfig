@@ -112,7 +112,7 @@ basic.git = {
 				{ " ", "" },
 				{ git_comps.diff_added({ format = "  %s" }), "green" },
 				{ git_comps.diff_removed({ format = "  %s" }), "red" },
-				{ git_comps.diff_changed({ format = " %s" }), "blue" },
+				{ git_comps.diff_changed({ format = "  %s" }), "blue" },
 			}
 		end
 		return ""

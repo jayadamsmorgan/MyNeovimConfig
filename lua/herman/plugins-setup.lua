@@ -28,6 +28,9 @@ end
 
 -- add list of plugins to install
 return packer.startup(function(use)
+	-- Using Packer:
+	use("Mofiqul/dracula.nvim")
+
 	-- xcode integration
 	use({
 		"xbase-lab/xbase",
