@@ -17,7 +17,19 @@ nvimtree.setup({
 		dotfiles = true,
 	},
 	view = {
-		width = 20,
+		--width = 20,
+		float = {
+			enable = true,
+			open_win_config = {
+				relative = "editor",
+				border = "rounded",
+				title = "NvimTree",
+				title_pos = "center",
+				width = 121,
+				height = 40,
+				col = 29,
+			},
+		},
 	},
 	renderer = {
 		icons = {
@@ -65,4 +77,4 @@ local function open_nvim_tree(data)
 	require("nvim-tree.api").tree.open()
 end
 
-vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+--vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
