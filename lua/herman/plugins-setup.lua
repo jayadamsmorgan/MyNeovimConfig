@@ -28,7 +28,10 @@ end
 
 -- add list of plugins to install
 return packer.startup(function(use)
-	-- Using Packer:
+	-- Undotree
+	use("mbbill/undotree")
+
+	-- Dracula theme
 	use("Mofiqul/dracula.nvim")
 
 	-- xcode integration

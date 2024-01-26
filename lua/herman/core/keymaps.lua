@@ -25,6 +25,12 @@ keymap.set("v", "p", '"_dP')
 keymap.set("n", "<leader>d", '"_d')
 keymap.set("v", "<leader>d", '"_d')
 
+keymap.set("n", "<leader>,", "<C-w>h")
+keymap.set("n", "<leader>.", "<C-w>l")
+
+-- Undo tree
+keymap.set("n", "<leader>ut", vim.cmd.UndotreeToggle)
+
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>")
 
@@ -57,16 +63,21 @@ keymap.set("n", "<leader>pe", ":wa<CR>:!pio run -e ")
 keymap.set("n", "<leader>pd", ":wa<CR>:!pio run -t compiledb<CR>:LspRestart<CR>")
 keymap.set("n", "<leader>pc", ":!pio run -t clean<CR>")
 
+-- Makefile
+keymap.set("n", "<leader>mcb", ":wa<CR>:! make -j9 all<CR>")
+keymap.set("n", "<leader>mcr", ":wa<CR>:! make -j9 all<CR>:! ./build/main<CR>")
+keymap.set("n", "<leader>mcc", "!make clean")
+
 -- STM32 Makefile
-keymap.set("n", "<leader>mb", ":wa<CR>:! (cd Makefile && make -j9 all)<CR>")
+keymap.set("n", "<leader>msb", ":wa<CR>:! (cd Makefile && make -j9 all)<CR>")
 keymap.set(
 	"n",
-	"<leader>mc",
+	"<leader>msc",
 	":! (cd Makefile && make -j9 clean && cd CM4 && make -j9 clean && cd ../CM7 && make -j9 clean)<CR>"
 )
 keymap.set(
 	"n",
-	"<leader>mcd",
+	"<leader>msd",
 	":wa<CR>:! (cd Makefile && compiledb -o ../compile_commands.json make -j9 all)<CR>:LspRestart<CR>"
 )
 

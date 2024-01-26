@@ -24,7 +24,7 @@ local on_attach = function(client, bufnr)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 
 	-- set keybinds
-	keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
+	keymap.set("n", "gf", "<cmd>Lspsaga finder<CR>", opts) -- show definition, references
 	keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
 	keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
 	keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- go to implementation
@@ -38,7 +38,13 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
 	keymap.set("n", "<leader>f", function()
 		vim.lsp.buf.format()
-	end)
+	end, opts)
+	keymap.set("i", "<C-h>", function()
+		vim.lsp.buf.signature_help()
+	end, opts)
+	keymap.set("n", "<C-h>", function()
+		vim.lsp.buf.signature_help()
+	end, opts)
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
@@ -102,6 +108,7 @@ lspconfig["clangd"].setup({
 		"--limit-references=0",
 		"--limit-results=0",
 		"--log=error",
+		"--function-arg-placeholders=false",
 		--"--query-driver=/Applications/ArmGNUToolchain/13.2.Rel1/arm-none-eabi/bin/*gcc*",
 		"--query-driver=/usr/bin/aarch64-linux-gnu-gcc*",
 	},
