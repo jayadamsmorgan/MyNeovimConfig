@@ -28,6 +28,14 @@ end
 
 -- add list of plugins to install
 return packer.startup(function(use)
+	-- The Legend Himself
+	use({
+		"ThePrimeagen/harpoon",
+		requires = {
+			"nvim-lua/plenary.nvim",
+		},
+	})
+
 	-- Undotree
 	use("mbbill/undotree")
 
