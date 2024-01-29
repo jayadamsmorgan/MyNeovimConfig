@@ -63,6 +63,10 @@ keymap.set("n", "<leader>pe", ":wa<CR>:!pio run -e ")
 keymap.set("n", "<leader>pd", ":wa<CR>:!pio run -t compiledb<CR>:LspRestart<CR>")
 keymap.set("n", "<leader>pc", ":!pio run -t clean<CR>")
 
+-- CMake
+keymap.set("n", "<leader>cm", ":wa<CR>:!cmake . && make<CR>")
+keymap.set("n", "<leader>cr", ":wa<CR>:!cmake . && make && ./build/ssf")
+
 -- Makefile
 keymap.set("n", "<leader>mcb", ":wa<CR>:! make -j9 all<CR>")
 keymap.set("n", "<leader>mcr", ":wa<CR>:! make -j9 all<CR>:! ./build/main<CR>")
@@ -84,6 +88,12 @@ keymap.set(
 ----------------------
 -- Plugin Keybinds
 ----------------------
+-- Harpoon
+keymap.set("n", "<leader>hh", ":lua require('harpoon.mark').add_file()<CR>")
+keymap.set("n", "<leader>hm", ":lua require('harpoon.ui').toggle_quick_menu()<CR>")
+for i = 1, 9 do
+	keymap.set("n", tostring(i), ":lua require('harpoon.ui').nav_file(" .. tostring(i) .. ")<CR>")
+end
 
 -- vim-maximizer
 keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window maximization
