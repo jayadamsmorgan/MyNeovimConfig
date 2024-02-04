@@ -92,8 +92,10 @@ keymap.set(
 keymap.set("n", "<leader>hh", ":lua require('harpoon.mark').add_file()<CR>")
 keymap.set("n", "<leader>hm", ":lua require('harpoon.ui').toggle_quick_menu()<CR>")
 for i = 1, 9 do
-	keymap.set("n", tostring(i), ":lua require('harpoon.ui').nav_file(" .. tostring(i) .. ")<CR>")
+	keymap.set("n", "<M-" .. tostring(i) .. ">", ":lua require('harpoon.ui').nav_file(" .. tostring(i) .. ")<CR>")
 end
+keymap.set("n", "<M-" .. ".>", ":lua require('harpoon.ui').nav_next()<CR>")
+keymap.set("n", "<M-" .. ",>", ":lua require('harpoon.ui').nav_prev()<CR>")
 
 -- vim-maximizer
 keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window maximization

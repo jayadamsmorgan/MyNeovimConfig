@@ -108,6 +108,7 @@ lspconfig["clangd"].setup({
 		"--limit-references=0",
 		"--limit-results=0",
 		"--log=error",
+		"--offset-encoding=utf-16",
 		"--function-arg-placeholders=false",
 		--"--query-driver=/Applications/ArmGNUToolchain/13.2.Rel1/arm-none-eabi/bin/*gcc*",
 		"--query-driver=/usr/bin/aarch64-linux-gnu-gcc*",
