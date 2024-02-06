@@ -98,6 +98,16 @@ lspconfig["pylsp"].setup({
 	capabilities = capabilities,
 })
 
+lspconfig["sourcekit"].setup({
+	filetypes = { "swift", "objc", "objcpp", "cuda", "proto" },
+	cmd = {
+		"sourcekit-lsp",
+	},
+	root_dir = lspconfig.util.root_pattern(".git", "Package.swift", "project.yml", "Project.swift"),
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
 -- configure c/c++ server
 lspconfig["clangd"].setup({
 	cmd = {

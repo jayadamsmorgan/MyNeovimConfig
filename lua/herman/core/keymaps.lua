@@ -85,6 +85,10 @@ keymap.set(
 	":wa<CR>:! (cd Makefile && compiledb -o ../compile_commands.json make -j9 all)<CR>:LspRestart<CR>"
 )
 
+-- Swift
+keymap.set("n", "<leader>xb", ":wa<CR>:!swift build")
+keymap.set("n", "<leader>xr", ":wa<CR>:!swift run")
+
 ----------------------
 -- Plugin Keybinds
 ----------------------
