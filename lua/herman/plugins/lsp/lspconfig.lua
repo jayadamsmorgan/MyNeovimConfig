@@ -24,7 +24,7 @@ local on_attach = function(client, bufnr)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 
 	-- set keybinds
-	keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
+	keymap.set("n", "gf", "<cmd>Lspsaga finder<CR>", opts) -- show definition, references
 	keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
 	keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
 	keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- go to implementation
@@ -34,8 +34,17 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "<leader>d", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
 	keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
 	keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
-	keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
+	keymap.set("n", "<leader>K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
 	keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
+	keymap.set("n", "<leader>f", function()
+		vim.lsp.buf.format()
+	end, opts)
+	keymap.set("i", "<C-h>", function()
+		vim.lsp.buf.signature_help()
+	end, opts)
+	keymap.set("n", "<C-h>", function()
+		vim.lsp.buf.signature_help()
+	end, opts)
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
@@ -62,6 +71,14 @@ lspconfig["jsonls"].setup({
 })
 -- configure bash server
 lspconfig["bashls"].setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+lspconfig["sourcekit"].setup({
+	filetypes = { "swift", "objc" },
+	cmd = { "/usr/bin/sourcekit-lsp" },
+	root_dir = require("lspconfig/util").root_pattern(".git", "Package.swift"),
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
@@ -101,7 +118,10 @@ lspconfig["clangd"].setup({
 		"--limit-references=0",
 		"--limit-results=0",
 		"--log=error",
-		"--query-driver=/home/herman/.toolchains/arm-gnu-eabi-13.2/bin/*gcc*",
+		"--offset-encoding=utf-16",
+		"--function-arg-placeholders=false",
+		--"--query-driver=/Applications/ArmGNUToolchain/13.2.Rel1/arm-none-eabi/bin/*gcc*",
+		"--query-driver=/usr/bin/aarch64-linux-gnu-gcc*",
 	},
 	filetypes = { "c", "cpp", "arduino" },
 	on_attach = on_attach,
@@ -114,39 +134,6 @@ lspconfig["jdtls"].setup({
 	root_dir = require("lspconfig/util").root_pattern(".git", "pom.xml"),
 	on_attach = on_attach,
 	capabilities = capabilities,
-})
-
--- configure html server
-lspconfig["html"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
-
--- configure typescript server with plugin
-typescript.setup({
-	server = {
-		on_attach = on_attach,
-		capabilities = capabilities,
-	},
-})
-
--- configure css server
-lspconfig["cssls"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
-
--- configure tailwindcss server
-lspconfig["tailwindcss"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
-
--- configure emmet language server
-lspconfig["emmet_ls"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
 })
 
 -- configure lua server (with special settings)
