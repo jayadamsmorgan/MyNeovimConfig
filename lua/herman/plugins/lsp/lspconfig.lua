@@ -10,16 +10,10 @@ if not cmp_nvim_lsp_status then
 	return
 end
 
--- import typescript plugin safely
-local typescript_setup, typescript = pcall(require, "typescript")
-if not typescript_setup then
-	return
-end
-
 local keymap = vim.keymap -- for conciseness
 
 -- enable keybinds only for when lsp server available
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
 	-- keybind options
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 
@@ -57,6 +51,24 @@ for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
+
+vim.cmd([[autocmd BufRead,BufNewFile *.pkl setfiletype pkl]])
+-- Setting up custom Pkl server configuration
+local configs = require("lspconfig.configs")
+
+configs.pklls = {
+	default_config = {
+		cmd = { "/home/heman/Documents/PklLanguageServer/.build/debug/PklLanguageServer" },
+		filetypes = { "pkl" },
+		root_dir = require("lspconfig/util").root_pattern(".git", "Package.swift", ".pkl"),
+		settings = {},
+	},
+}
+
+lspconfig["pklls"].setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
 
 -- configure yaml server
 lspconfig["yamlls"].setup({
