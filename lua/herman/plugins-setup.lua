@@ -28,6 +28,14 @@ end
 
 -- add list of plugins to install
 return packer.startup(function(use)
+	-- Pkl plugin
+	use({
+		"jayadamsmorgan/pkl-neovim",
+		requires = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+	})
+
 	-- The Legend Himself
 	use({
 		"ThePrimeagen/harpoon",

@@ -4,6 +4,14 @@ if not status then
 	return
 end
 
+-- Fix for treesitter folding in pkl files, this should be removed once pkl-neovim is updated
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "pkl",
+	callback = function()
+		vim.opt.foldmethod = "manual"
+	end,
+})
+
 -- configure treesitter
 treesitter.setup({
 	-- enable syntax highlighting

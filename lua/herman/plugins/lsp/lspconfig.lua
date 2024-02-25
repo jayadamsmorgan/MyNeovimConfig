@@ -58,6 +58,24 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
+vim.cmd([[autocmd BufRead,BufNewFile *.pkl setfiletype pkl]])
+-- Setting up custom Pkl server configuration
+local configs = require("lspconfig.configs")
+
+configs.pklls = {
+	default_config = {
+		cmd = { "/home/ubuntu/Documents/PklLanguageServer/.build/debug/pkl-lsp-server", "--stdio" },
+		filetypes = { "pkl" },
+		root_dir = require("lspconfig/util").root_pattern(".git", "Package.swift", ".pkl"),
+		settings = {},
+	},
+}
+
+lspconfig["pklls"].setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
 -- configure yaml server
 lspconfig["yamlls"].setup({
 	on_attach = on_attach,
