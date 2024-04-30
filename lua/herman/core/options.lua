@@ -28,6 +28,8 @@ opt.clipboard:append("unnamedplus")
 opt.splitright = true
 opt.splitbelow = true
 
+vim.cmd("set cmdheight=0")
+
 opt.iskeyword:append("-")
 
 vim.cmd("source ~/.config/nvim/lua/herman/core/persistent_undo.vim")

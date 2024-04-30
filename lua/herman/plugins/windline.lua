@@ -193,7 +193,7 @@ local explorer = {
 }
 windline.setup({
 	colors_name = function(colors)
-		-- ADD MORE COLOR HERE ----
+		colors.ActiveBg = "#282c34"
 		return colors
 	end,
 	statuslines = {

@@ -47,11 +47,11 @@ keymap.set("n", "<leader>sh", "<C-w>s") -- split window horizontally
 keymap.set("n", "<leader>se", "<C-w>=") -- make split windows equal width & height
 keymap.set("n", "<leader>sx", ":close<CR>") -- close current split window
 
-keymap.set("n", "<leader>to", ":tabnew<CR>") -- open new tab
-keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close current tab
-keymap.set("n", "<leader>tn", ":tabn<CR>") --  go to next tab
-keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
-keymap.set("n", "<leader>tX", ":tabonly<CR>") --  close other tabs
+-- keymap.set("n", "<leader>to", ":tabnew<CR>") -- open new tab
+-- keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close current tab
+-- keymap.set("n", "<leader>tn", ":tabn<CR>") --  go to next tab
+-- keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
+-- keymap.set("n", "<leader>tX", ":tabonly<CR>") --  close other tabs
 
 -- toggle wrap
 keymap.set("n", "<leader>we", ":set wrap!<CR>")
@@ -86,8 +86,9 @@ keymap.set(
 )
 
 -- Swift
-keymap.set("n", "<leader>xb", ":wa<CR>:!swift build")
-keymap.set("n", "<leader>xr", ":wa<CR>:!swift run")
+keymap.set("n", "<leader>sb", ":wa<CR>:!swift build<CR>")
+keymap.set("n", "<leader>sr", ":wa<CR>:!swift run<CR>")
+keymap.set("n", "<leader>st", ":wa<CR>:!swift test | xcbeautify<CR>")
 
 ----------------------
 -- Plugin Keybinds
@@ -108,8 +109,8 @@ keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window max
 keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
 
 -- telescope
-keymap.set("n", "<leader>tf", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
-keymap.set("n", "<leader>tb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
+keymap.set("n", "<leader>t", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
+keymap.set("n", "<leader>b", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
 
 -- MarkdownPreview
 keymap.set("n", "<leader>md", ":MarkdownPreviewToggle<CR>")

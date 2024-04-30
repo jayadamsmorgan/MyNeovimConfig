@@ -8,8 +8,12 @@ end
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+local dracula_colors = require("dracula").colors()
+
 -- change color for arrows in tree to light blue
-vim.cmd([[ highlight NvimTreeIndentMarker guifg=#3FC5FF ]])
+vim.cmd([[ highlight NvimTreeIndentMarker guifg=]] .. dracula_colors.purple .. [[ guibg=NONE]])
+vim.cmd([[ highlight NvimTreeNormal guibg=NONE]])
+-- NvimTreeNormal                                                                               guifg=#f8f8f2 guibg=#21222c
 
 -- configure nvim-tree
 nvimtree.setup({
@@ -35,8 +39,8 @@ nvimtree.setup({
 		icons = {
 			glyphs = {
 				folder = {
-					arrow_closed = "", -- arrow when folder is closed
-					arrow_open = "", -- arrow when folder is open
+					arrow_closed = "", -- arrow when folder is closed
+					arrow_open = "", -- arrow when folder is open
 				},
 				git = {
 					unstaged = "",
@@ -61,20 +65,3 @@ nvimtree.setup({
 		},
 	},
 })
-
--- open nvim-tree on setup
-
-local function open_nvim_tree(data)
-	-- buffer is a directory
-	local directory = vim.fn.isdirectory(data.file) == 1
-
-	-- change to the directory
-	if directory then
-		vim.cmd.cd(data.file)
-	end
-
-	-- open the tree
-	require("nvim-tree.api").tree.open()
-end
-
---vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })

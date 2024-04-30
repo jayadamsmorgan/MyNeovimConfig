@@ -10,12 +10,6 @@ if not cmp_nvim_lsp_status then
 	return
 end
 
--- import typescript plugin safely
-local typescript_setup, typescript = pcall(require, "typescript")
-if not typescript_setup then
-	return
-end
-
 local keymap = vim.keymap -- for conciseness
 
 -- enable keybinds only for when lsp server available
@@ -58,22 +52,18 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
-vim.cmd([[autocmd BufRead,BufNewFile *.pkl setfiletype pkl]])
--- Setting up custom Pkl server configuration
-local configs = require("lspconfig.configs")
+vim.cmd([[autocmd BufRead,BufNewFile *.swiftinterface setfiletype swift]])
 
-configs.pklls = {
-	default_config = {
-		cmd = { "/home/ubuntu/Documents/PklLanguageServer/.build/debug/pkl-lsp-server", "--stdio" },
-		filetypes = { "pkl" },
-		root_dir = require("lspconfig/util").root_pattern(".git", "Package.swift", ".pkl"),
-		settings = {},
-	},
-}
-
-lspconfig["pklls"].setup({
+require("pklls-nvim.init").setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
+	cmd = {
+		-- "/home/ubuntu/Documents/PklLanguageServer/.build/debug/pkl-lsp-server", -- debug version
+		"pkl-lsp-server", -- release version
+		-- "--enable-experimental-features",
+		-- "--import-depth",
+		-- "3",
+	},
 })
 
 -- configure yaml server
@@ -89,14 +79,6 @@ lspconfig["jsonls"].setup({
 })
 -- configure bash server
 lspconfig["bashls"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
-
-lspconfig["sourcekit"].setup({
-	filetypes = { "swift", "objc" },
-	cmd = { "/usr/bin/sourcekit-lsp" },
-	root_dir = require("lspconfig/util").root_pattern(".git", "Package.swift"),
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
@@ -146,9 +128,16 @@ lspconfig["clangd"].setup({
 	capabilities = capabilities,
 })
 
+lspconfig["kotlin_language_server"].setup({
+	cmd = { "/home/ubuntu/Documents/kotlin-language-server/server/build/install/server/bin/kotlin-language-server" },
+	-- root_dir = require("lspconfig/util").root_pattern(".git", "build.gradle", "pom.xml"),
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
 -- configure java server
 lspconfig["jdtls"].setup({
-	cmd = { "/usr/local/Cellar/jdtls/1.26.0/bin/jdtls" },
+	-- cmd = { "/usr/local/Cellar/jdtls/1.26.0/bin/jdtls" },
 	root_dir = require("lspconfig/util").root_pattern(".git", "pom.xml"),
 	on_attach = on_attach,
 	capabilities = capabilities,

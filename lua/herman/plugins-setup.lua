@@ -28,9 +28,39 @@ end
 
 -- add list of plugins to install
 return packer.startup(function(use)
+	-- Startup plugin
+	use({
+		"startup-nvim/startup.nvim",
+		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+	})
+
+	-- Linting plugin
+	use("mfussenegger/nvim-lint")
+
+	-- CMDline
+	use({
+		"VonHeikemen/fine-cmdline.nvim",
+		requires = {
+			{ "MunifTanjim/nui.nvim" },
+		},
+	})
+	-- Highlight colors
+	use("brenoprata10/nvim-highlight-colors")
+
+	-- Cyberdream theme
+	use("scottmckendry/cyberdream.nvim")
+
+	use({
+		"jayadamsmorgan/PklLanguageServer",
+		requires = {
+			"neovim/nvim-lspconfig",
+		},
+		run = "mv Editors/Neovim/pklls-nvim/* .",
+	})
+
 	-- Pkl plugin
 	use({
-		"jayadamsmorgan/pkl-neovim",
+		"apple/pkl-neovim",
 		requires = {
 			"nvim-treesitter/nvim-treesitter",
 		},
