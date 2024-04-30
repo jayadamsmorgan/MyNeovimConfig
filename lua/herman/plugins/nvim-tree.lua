@@ -10,10 +10,8 @@ vim.g.loaded_netrwPlugin = 1
 
 local dracula_colors = require("dracula").colors()
 
--- change color for arrows in tree to light blue
 vim.cmd([[ highlight NvimTreeIndentMarker guifg=]] .. dracula_colors.purple .. [[ guibg=NONE]])
 vim.cmd([[ highlight NvimTreeNormal guibg=NONE]])
--- NvimTreeNormal                                                                               guifg=#f8f8f2 guibg=#21222c
 
 -- configure nvim-tree
 nvimtree.setup({

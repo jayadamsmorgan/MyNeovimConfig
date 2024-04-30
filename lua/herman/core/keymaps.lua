@@ -109,8 +109,20 @@ keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window max
 keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
 
 -- telescope
-keymap.set("n", "<leader>t", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
-keymap.set("n", "<leader>b", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
+keymap.set("n", "<leader>tf", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
+keymap.set("n", "<leader>tb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
+keymap.set("n", "<leader>tw", "<cmd>Telescope live_grep<cr>") -- search for word in current working directory
+keymap.set("n", "<leader>tr", "<cmd>Telescope oldfiles<cr>") -- list recently opened files
+keymap.set("n", "<leader>tg", "<cmd>Telescope git_files<cr>") -- list git files
+keymap.set("n", "<leader>th", "<cmd>Telescope help_tags<cr>") -- search for help tags
+keymap.set("n", "<leader>ts", "<cmd>Telescope lsp_document_symbols<cr>") -- search for symbols in current buffer
+keymap.set("n", "<leader>ti", "<cmd>Telescope lsp_implementations<cr>") -- search for implementations in current buffer
+keymap.set("n", "<leader>tt", "<cmd>Telescope lsp_type_definitions<cr>") -- search for type definitions in current buffer
+keymap.set("n", "<leader>tr", "<cmd>Telescope lsp_references<cr>") -- search for references in current buffer
+keymap.set("n", "<leader>te", "<cmd>Telescope lsp_workspace_symbols<cr>") -- search for symbols in current workspace
+
+-- startup-nvim
+keymap.set("n", "<leader>nf", ":lua require'startup'.new_file()<CR>") -- create new file
 
 -- MarkdownPreview
 keymap.set("n", "<leader>md", ":MarkdownPreviewToggle<CR>")
