@@ -16,8 +16,8 @@ vim.cmd([[ highlight NvimTreeNormal guibg=NONE]])
 local screen_width = vim.api.nvim_win_get_width(0)
 local screen_height = vim.api.nvim_win_get_height(0)
 
-local tree_width = screen_width - 100
-local tree_height = screen_height - 10
+local tree_width = math.floor(screen_width * 0.6)
+local tree_height = math.floor(screen_height * 0.9)
 
 -- expand all folders when opening nvim-tree
 local api = require("nvim-tree.api")
@@ -76,5 +76,4 @@ nvimtree.setup({
 			},
 		},
 	},
-	on_attach = on_attach,
 })
