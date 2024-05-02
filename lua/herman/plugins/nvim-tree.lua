@@ -26,6 +26,16 @@ api.events.subscribe(Event.TreeOpen, function()
 	api.tree.expand_all()
 end)
 
+local function on_attach(bufnr)
+	local function opts(desc)
+		return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+	end
+
+	api.config.mappings.default_on_attach(bufnr)
+
+	vim.keymap.set("n", "<ESC>", api.tree.close, opts("Close"))
+end
+
 -- configure nvim-tree
 nvimtree.setup({
 	filters = {
@@ -38,7 +48,7 @@ nvimtree.setup({
 			open_win_config = {
 				relative = "editor",
 				border = "rounded",
-				title = "NvimTree",
+				title = "File Browser",
 				title_pos = "center",
 				width = tree_width,
 				height = tree_height,
@@ -76,4 +86,5 @@ nvimtree.setup({
 			},
 		},
 	},
+	on_attach = on_attach,
 })
