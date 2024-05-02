@@ -44,7 +44,7 @@ require("lualine").setup({
 		section_separators = { left = " ", right = " " },
 		theme = lualine_dracula,
 		globalstatus = true,
-		disabled_filetypes = { statusline = { "dashboard", "alpha" } },
+		disabled_filetypes = { statusline = { "dashboard", "alpha", "NvimTree" } },
 	},
 	sections = {
 		lualine_a = {
