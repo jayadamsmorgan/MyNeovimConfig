@@ -13,6 +13,19 @@ local dracula_colors = require("dracula").colors()
 vim.cmd([[ highlight NvimTreeIndentMarker guifg=]] .. dracula_colors.purple .. [[ guibg=NONE]])
 vim.cmd([[ highlight NvimTreeNormal guibg=NONE]])
 
+local screen_width = vim.api.nvim_win_get_width(0)
+local screen_height = vim.api.nvim_win_get_height(0)
+
+local tree_width = screen_width - 100
+local tree_height = screen_height - 10
+
+-- expand all folders when opening nvim-tree
+local api = require("nvim-tree.api")
+local Event = api.events.Event
+api.events.subscribe(Event.TreeOpen, function()
+	api.tree.expand_all()
+end)
+
 -- configure nvim-tree
 nvimtree.setup({
 	filters = {
@@ -27,10 +40,10 @@ nvimtree.setup({
 				border = "rounded",
 				title = "NvimTree",
 				title_pos = "center",
-				width = 120,
-				height = 40,
-				col = vim.api.nvim_win_get_width(0) / 2 - 61,
-				row = vim.api.nvim_win_get_height(0) / 2 - 25,
+				width = tree_width,
+				height = tree_height,
+				col = (screen_width - tree_width) / 2,
+				row = (screen_height - tree_height) / 2,
 			},
 		},
 	},
@@ -63,4 +76,5 @@ nvimtree.setup({
 			},
 		},
 	},
+	on_attach = on_attach,
 })
