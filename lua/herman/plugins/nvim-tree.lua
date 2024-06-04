@@ -20,17 +20,13 @@ local tree_width = math.floor(screen_width * 0.6)
 local tree_height = math.floor(screen_height * 0.9)
 
 -- expand all folders when opening nvim-tree
-local api = require("nvim-tree.api")
-local Event = api.events.Event
-api.events.subscribe(Event.TreeOpen, function()
-	api.tree.expand_all()
-end)
 
 local function on_attach(bufnr)
 	local function opts(desc)
 		return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
 	end
 
+	local api = require("nvim-tree.api")
 	api.config.mappings.default_on_attach(bufnr)
 
 	vim.keymap.set("n", "<ESC>", api.tree.close, opts("Close"))

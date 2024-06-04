@@ -13,7 +13,7 @@ end
 local keymap = vim.keymap -- for conciseness
 
 -- enable keybinds only for when lsp server available
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
 	-- keybind options
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 
@@ -101,7 +101,8 @@ lspconfig["pylsp"].setup({
 lspconfig["sourcekit"].setup({
 	filetypes = { "swift", "objc", "objcpp", "cuda", "proto" },
 	cmd = {
-		"sourcekit-lsp",
+		"sourcekit-lsp", -- System version
+		-- "~/Documents/sourcekit-lsp/.build/debug/sourcekit-lsp", -- Development
 	},
 	root_dir = lspconfig.util.root_pattern(".git", "Package.swift", "project.yml", "Project.swift"),
 	on_attach = on_attach,

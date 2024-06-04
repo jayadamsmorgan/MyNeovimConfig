@@ -34,8 +34,7 @@ return packer.startup(function(use)
 		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 	})
 
-	-- Linting plugin
-	use("mfussenegger/nvim-lint")
+	use("stevearc/conform.nvim")
 
 	-- CMDline
 	use({
@@ -131,18 +130,6 @@ return packer.startup(function(use)
 
 	-- Dracula theme
 	use("Mofiqul/dracula.nvim")
-
-	-- xcode integration
-	use({
-		"xbase-lab/xbase",
-		run = "make install", -- or "make install && make free_space" (not recommended, longer build time)
-		requires = {
-			"neovim/nvim-lspconfig",
-			-- "nvim-telescope/telescope.nvim", -- optional
-			-- "nvim-lua/plenary.nvim", -- optional/requirement of telescope.nvim
-			-- "stevearc/dressing.nvim", -- optional (in case you don't use telescope but something else)
-		},
-	})
 
 	-- Markdown Preview plugin
 	use({
